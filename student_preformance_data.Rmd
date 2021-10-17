@@ -1,0 +1,111 @@
+---
+title: "Untitled"
+author: "Brenda Maldonado"
+date: "10/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+pacman::p_load(tidyverse, showtext, jpeg, png)
+theme_set(theme_minimal())
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+setwd("~/Desktop/Data_VC/Student_project")
+data = read.csv("StudentsPerformance.csv", header = TRUE)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+students=data
+student_gender= student$gender
+reading_score=student$reading.score
+math_score= student$math.score
+writing_score=student$writing.score
+```
+
+View(students)
+
+##dataframe for gender
+```{r}
+students=data.frame(student_gender)
+View(students)
+
+```
+##dataframe for reading score
+```{r}
+stu_reading= data.frame(reading_score)
+```
+
+View(stu_reading)
+
+##reading score
+```{r}
+ggplot(students,aes(x=reading_score))+
+         geom_bar()
+```
+
+```{r}
+students %>% count(student_gender)
+```
+
+
+##writing score
+
+```{r}
+ggplot(students,aes(x=writing_score))+
+         geom_bar()
+```
+##math
+```{r}
+ggplot(students,aes(x=math_score))+
+         geom_bar()
+```
+
+
+
+
+
+
+
+
+##ggplot
+```{r}
+ggplot(students, aes(x = student_gender)) +
+  geom_bar()
+```
+
+##gender and math.score
+
+```{r}
+ggplot(students,aes(x=gender,y = math.score))+
+  geom_bar(stat = "identity" ,fill ="#5CC9F5")+
+  labs(x = "math score", y = "gender")
+```
+
+
+
+```{r}
+ggplot(students,aes(x=gender,y = reading.score))+
+  geom_bar(stat = "identity" ,fill ="#5CC936")+
+  labs(x = "reading score", y = "gender")
+```
+
+```{r}
+ggplot(students,aes(x=gender,y = writing.score))+
+  geom_bar(stat = "identity" ,fill ="#5CD391")+
+  labs(x = "writing score", y = "gender")
+```
+
